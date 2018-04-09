@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<!--<title>LoginApp</title>-->
+	<!--<link rel="stylesheet" href="/css/bootstrap.css" />
+	<link rel="stylesheet" href="/css/style.css" />-->
+    <title>Road Side Assistance</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="/css/util.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/css/main.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/css/materialize.min.css"> 
+    <script src="https://maps.google.com/maps/api/js?key=AIzaSyDOM87ytBnAEr3nE0441Vsx33VYewNdL7c&sensor=true"></script>
+	<script src="/js/materialize.min.js"></script>		
+  <script src="/js/map.js"></script>
+  <script src="/js/needassistance.js"></script>
+  <script src="/js/otherresult.js"></script>
+  <script src="/js/pitstop.js"></script>
+  <script src="/js/Registration.js"></script>
+  <script src="/js/result.js"></script>
+
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+	<!--<div class="container">
+      <div class="header clearfix">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+            {{#if user}}
+              <li role="presentation"><a href="/">Dashboard</a></li>
+              <li role="presentation"><a href="/users/logout">Logout</a></li>
+            {{else}}
+              <li role="presentation"><a href="/users/login">Login</a></li>
+              <li role="presentation"><a href="/users/register">Register</a></li>
+            {{/if}}
+          </ul>
+        </nav>
+        <h3 class="text-muted">LoginApp</h3>
+      </div>
+  -->
+  <nav>
+				<div class="nav-wrapper">
+				  <a href="/" class="brand-logo"><img src="/images/icons/ride1.png"> </a>
+				  <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+				  <ul class="right hide-on-med-and-down">
+            {{#if user}}
+					    <!--<li><a href="/">Home</a></li>
+					    <li><a href="/users/about">About Us</a></li>-->
+              <li><a href="/users/logout" class="waves-effect waves-light btn">Logout</a></li>
+            {{else}}
+              <!--<li><a href="/">Home</a></li>
+					    <li><a href="/users/about">About Us</a></li>-->
+					    <li><a href="/users/login">Login</a></li>
+					    <li><a href="/users/register" class="waves-effect waves-light btn">Sign Up</a></li>
+            {{/if}}
+				  </ul>
+				</div>
+			  </nav>
+        <ul class="sidenav" id="mobile-demo">
+          {{#if user}}
+					    <li><a href="/">Home</a></li>
+					    <li><a href="/users/about">About Us</a></li>
+              <li><a href="/users/logout">Logout</a></li>
+            {{else}}
+              <li><a href="/">Home</a></li>
+					    <li><a href="/users/about">About Us</a></li>
+					    <li><a href="/users/login">Login</a></li>
+					    <li><a href="/users/register" class="waves-effect waves-light btn">Sign Up</a></li>
+            {{/if}}
+        </ul>
+    <div class="head">
+		Road Side Assistance
+	</div>
+  <div class="limiter">
+      <div class="row">
+        <div class="col-lg-12">
+          {{#if success_msg}}
+            <div class="alert alert-success">{{success_msg}}</div>
+          {{/if}}
+
+          {{#if error_msg}}
+            <div class="alert alert-danger">{{error_msg}}</div>
+          {{/if}}
+
+          {{#if error}}
+            <div class="alert alert-danger">{{error}}</div>
+          {{/if}}
+          
+          {{{body}}}
+        </div>        
+      </div>
+  </div>
+
+      <footer class="footer">
+        <p>&copy; 2018 RideSoftech Solutions LLP</p>
+      </footer>
+
+    <!--</div>  /container -->
+</body>
+</html>
