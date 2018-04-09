@@ -15,11 +15,6 @@ router.get('/login', function(req, res){
 	res.render('login');
 });
 
-// About Us
-router.get('/about', function(req, res){
-	res.render('about');
-});
-
 // Register User
 router.post('/register', function(req, res){
 	var name = req.body.name;
