@@ -6,6 +6,16 @@ router.get('/', ensureAuthenticated, function(req, res){
 	res.render('index');
 });
 
+// Update
+router.get('/update', ensureAuthenticated, function(req, res){
+	res.render('update');
+});
+
+// About
+router.get('/about', ensureAuthenticated, function(req, res){
+	res.render('about');
+});
+
 // Pitstop
 router.get('/pitstop', ensureAuthenticated, function(req, res){
 	res.render('pitstop');

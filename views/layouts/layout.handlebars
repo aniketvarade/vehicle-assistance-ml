@@ -22,7 +22,7 @@
 
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
-<body>
+<body style="background-color: #ebebeb">
 	<!--<div class="container">
       <div class="header clearfix">
         <nav>
@@ -45,12 +45,13 @@
 				  <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 				  <ul class="right hide-on-med-and-down">
             {{#if user}}
-					    <!--<li><a href="/">Home</a></li>
-					    <li><a href="/users/about">About Us</a></li>-->
+					    <li><a href="/">Home</a></li>
+              <li><a href="/about">About Us</a></li>
+					    <li><a href="/update">Update Details</a></li>
               <li><a href="/users/logout" class="waves-effect waves-light btn">Logout</a></li>
             {{else}}
-              <!--<li><a href="/">Home</a></li>
-					    <li><a href="/users/about">About Us</a></li>-->
+              <!--<li><a href="/">Home</a></li>-->
+					    <li><a href="/users/about">About Us</a></li>
 					    <li><a href="/users/login">Login</a></li>
 					    <li><a href="/users/register" class="waves-effect waves-light btn">Sign Up</a></li>
             {{/if}}
