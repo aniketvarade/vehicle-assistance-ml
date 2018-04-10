@@ -1,7 +1,9 @@
 var mongoose = require('mongoose');
+require('mongoose-double')(mongoose);
 var bcrypt = require('bcryptjs');
 
 // User Schema
+var SchemaTypes = mongoose.SchemaTypes;
 var UserSchema = mongoose.Schema({
 	username: {
 		type: String,
@@ -11,14 +13,53 @@ var UserSchema = mongoose.Schema({
 		type: String
 	},
 	email: {
-		type: String
+		type: String,
+		unique: true
 	},
 	number: {
-		type: Number
+		type: Number,
+		unique: true
 	},
 	name: {
 		type: String
-	}
+	},
+	model: {
+		type: String
+	},
+	latitude: {
+		type: SchemaTypes.Double
+	},
+	longitude: {
+		type: SchemaTypes.Double
+	},
+	totalKms: {
+		type: Number
+	},
+	accident: {
+		type: Number
+	},
+	realCoolantKms: {
+		type: Number
+	},
+	realOilKms: {
+		type: Number
+	},
+	realTireKms: {
+		type: Number
+	},
+	currCoolantKms: {
+		type: Number
+	},
+	currOilkms: {
+		type: Number
+	},
+	currTireKms: {
+		type: Number
+	},	
+	created: {
+        type: Date,
+        default: Date.now
+    }
 });
 
 var User = module.exports = mongoose.model('User', UserSchema);

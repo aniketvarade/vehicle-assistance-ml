@@ -1,3 +1,5 @@
+//import { model } from 'mongoose';
+
 var express = require('express');
 var router = express.Router();
 var passport = require('passport');
@@ -49,7 +51,18 @@ router.post('/register', function(req, res){
 			number: number,
 			email:email,
 			username: username,
-			password: password
+			password: password,
+			model: "abc",
+			latitude: 0.00,
+			longitude:0.00,
+			totalKms: 0,
+			accident:0,
+			realCoolantKms: 0,
+			realOilKms: 0,
+			realTireKms: 0,
+			currCoolantKms: 0,
+			currOilKms: 0,
+			currTireKms: 0
 		});
 
 		User.createUser(newUser, function(err, user){

@@ -41,6 +41,13 @@ router.get('/thankyou', ensureAuthenticated, function(req, res){
 	res.render('thankyou');
 });
 
+// Update post
+router.post('/update', ensureAuthenticated, function(req, res){
+	var model = req.body.selectpicker;
+
+	res.render('update');
+});
+
 function ensureAuthenticated(req, res, next){
 	if(req.isAuthenticated()){
 		return next();
