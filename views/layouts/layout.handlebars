@@ -43,8 +43,10 @@
 				<div class="nav-wrapper">
 				  <a href="/" class="brand-logo"><img src="/images/icons/rideso.png"> </a>
 				  <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+          
 				  <ul class="right hide-on-med-and-down">
             {{#if user}}
+              <li class="tp">Welcome, {{username}}</li>
 					    <li><a href="/">Home</a></li>
               <li><a href="/about">About Us</a></li>
 					    <li><a href="/update">Update Details</a></li>
@@ -93,9 +95,16 @@
       </div>
   </div>
 
-      <footer class="footer">
-        <p>&copy; 2018 RideSoftech Solutions LLP</p>
+      <footer class="page-footer">
+        <!--<p>&copy; 2018 RideSoftech Solutions LLP</p>-->
+        <div class="footer-copyright">
+            <div class="container">
+            © 2018 RideSoftech Solutions LLP
+            <!--<a class="grey-text text-lighten-4 right" href="#!">More Links</a>-->
+            </div>
+          </div>
       </footer>
+      
 
     <!--</div>  /container -->
 </body>
