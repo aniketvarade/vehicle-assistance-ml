@@ -436,7 +436,7 @@ iframe {
   display: -ms-flexbox;
   display: flex;
   justify-content: center;
-  align-items: right;
+  align-items: center;
   padding: 0 20px;
   min-width: 150px;
   height: 55px;
@@ -623,6 +623,16 @@ iframe {
 	background-image: url('../images/icons/wide1.jpg');
 	}
 	
+	.footer {
+		position:absolute;
+		bottom:10px;
+		color:#000000;
+		background-color:#ebebeb;
+		text-align:center;
+		width:100%;
+		border: 3px;
+	}
+	
   .alert-danger {
     color: #a94442;
     background-color: #f2dede;
@@ -710,6 +720,7 @@ iframe {
   .alert-danger .alert-link {
     color: #843534;
   }
+  
 
 @media (max-width:640px) {
 	.head {

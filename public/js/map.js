@@ -21,7 +21,7 @@ function showPosition(position) {
         mapholder.style.width = "250px";
     }
     //mapholder.style.col
-    document.getElementById("bt1").style.visibility = "visible";
+    //document.getElementById("bt1").style.visibility = "visible";
     document.getElementById("bt2").style.visibility = "visible";
     //document.getElementsByClassName("container-btn").style.visibility = "visible";
     //newFunction();
