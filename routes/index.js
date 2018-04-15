@@ -2,9 +2,16 @@ var express = require('express');
 var router = express.Router();
 
 var User = require('../models/user');
+var self = this;
+var user1;
+User.find({name : self.name}, function(err,docs){
+	if(err) throw err;
+	user1 = self.name;
+});
 
 // Get Homepage
 router.get('/', ensureAuthenticated, function(req, res){
+	console.log(user1);
 	res.render('index', {username: req.user.name});
 });
 
@@ -48,14 +55,46 @@ router.get('/thankyou', ensureAuthenticated, function(req, res){
 // Update post
 router.post('/update', ensureAuthenticated, function(req, res){
 	var model = req.body.selectpicker;
+	var accident = req.body.accident;
 	var tire = req.body.tire;
 	var coolant = req.body.coolant;
 	var oil = req.body.oil;
 	var name = req.user.name;
 	
-	User.findByIdAndUpdate
+	/*req.user.model = model;
+	req.user.accident = accident;
+	req.user.currCoolantKms = coolant;
+	req.user.currOilKms = oil;
+	req.user.currTireKms = tire;*/
 
-	res.render('update');
+	User.updateOne({name : name}, {$set: {
+		model: model, 
+		accident: accident, 
+		currCoolantKms: coolant,
+		currTireKms: tire,
+		currOilKms: oil
+		}}, function(err,res){
+			if(err) throw err;
+			console.log("1 document updated");
+		});
+
+	res.redirect('/update');
+});
+
+router.post('/needassistance', ensureAuthenticated, function(req,res){
+	var total = req.body.total;
+	var name = req.user.name;
+	req.user.totalKms = total;
+	//console.log(req.user);
+
+	User.updateOne({name: user1}, {$set: {
+		totalKms: total
+	}}, function(err,res){
+		if(err) throw err;
+		console.log("1 document updated");
+	});
+
+	res.redirect('/result');
 });
 
 function ensureAuthenticated(req, res, next){

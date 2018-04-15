@@ -54,7 +54,7 @@ var UserSchema = mongoose.Schema({
 	currCoolantKms: {
 		type: Number
 	},
-	currOilkms: {
+	currOilKms: {
 		type: Number
 	},
 	currTireKms: {
