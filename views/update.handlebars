@@ -12,8 +12,9 @@
 					<div class="wrap-input100 m-b-12">
 						<!--<input class="input100" id="name" type="text" name="name" required>-->
                         <select name="selectpicker" class="input100">
-                            <option value="honda" name="honda">Honda</option>
-                            <option value="maruti" name="maruti">Maruti</option>                            
+							<option value="select" name="Select Model">{{model}}</option>
+                            <option value="honda" name="Honda">Honda</option>
+                            <option value="maruti" name="Maruti">Maruti</option>                            
                         </select>
 						<span class="focus-input100"></span>
 					</div>
@@ -23,7 +24,7 @@
 						Number of Major Accidents
 					</span>
 					<div class="wrap-input100 m-b-12">
-						<input class="input100" type="number" name="accident" value="0">
+						<input class="input100" type="number" name="accident" value="{{accident}}">
 						<span class="focus-input100"></span>
 					</div>
 					<label id="accident"></label>			
@@ -32,7 +33,7 @@
 						Current Tire kms
 					</span>
 					<div class="wrap-input100 m-b-12">
-						<input class="input100" type="number" name="tire" value="0">
+						<input class="input100" type="number" name="tire" value="{{tire}}">
 						<span class="focus-input100"></span>
 					</div>
 					<label id="tire"></label>		
@@ -41,7 +42,7 @@
 						Current Coolant kms
 					</span>
 					<div class="wrap-input100 m-b-12">
-						<input class="input100" type="number" name="coolant" value="0">
+						<input class="input100" type="number" name="coolant" value="{{coolant}}">
 						<span class="focus-input100"></span>
 					</div>
 					<label id="coolant"></label>		
@@ -50,7 +51,7 @@
 						Current Oil kms
 					</span>
 					<div class="wrap-input100 m-b-12">
-						<input class="input100" type="number" name="oil" value="0">
+						<input class="input100" type="number" name="oil" value="{{oil}}">
 						<span class="focus-input100"></span>
 					</div>
 					<label id="oil"></label>		
