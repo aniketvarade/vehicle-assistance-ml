@@ -1,19 +1,14 @@
 var express = require('express');
 var router = express.Router();
 
+var map = require('../public/js/map');
+var lati = map.lat;
+
 var User = require('../models/user');
-var self = this;
-console.log(self);
-var user1;
-User.find({name : self.name}, function(err,docs){
-	if(err) throw err;
-	user1 = self.name;
-	//console.log(user1);
-});
+
 
 // Get Homepage
 router.get('/', ensureAuthenticated, function(req, res){
-	console.log(user1);
 	res.render('index', {username: req.user.name});
 });
 
@@ -85,18 +80,20 @@ router.post('/update', ensureAuthenticated, function(req, res){
 
 router.post('/needassistance', ensureAuthenticated, function(req,res){
 	var total = req.body.total;
+	var lati = map.lat;
+	console.log(lati);
 	var name = req.user.name;
 	req.user.totalKms = total;
 	//console.log(req.user);
 
-	User.updateOne({name: user1}, {$set: {
+	User.updateOne({name: name}, {$set: {
 		totalKms: total
 	}}, function(err,res){
 		if(err) throw err;
 		console.log("1 document updated");
 	});
 
-	res.redirect('/result');
+	res.render('needassistance');
 });
 
 function ensureAuthenticated(req, res, next){

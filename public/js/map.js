@@ -1,4 +1,6 @@
     //var x = document.getElementById("demo");
+    var lat=null;
+    var lon=null;
 function getLocation() {                                                                    //getLocation() function points to the current location of user.
     if (navigator.geolocation) {                                                            
         navigator.geolocation.getCurrentPosition(showPosition, showError);                  // if current position is obtained showPosition() function points to the location
@@ -8,8 +10,9 @@ function getLocation() {                                                        
 }
 
 function showPosition(position) {
-    var lat = position.coords.latitude;                                                     // lat is the latitude
-    var lon = position.coords.longitude;                                                    // lon is longitude
+     lat = position.coords.latitude;                                                     // lat is the latitude
+    lon = position.coords.longitude;
+    console.log(lat);                                                    // lon is longitude
     var latlon = new google.maps.LatLng(lat, lon)                                           // latlon gives the marker on map
     var mapholder = document.getElementById("mapholder");    
     if(window.screen.width > 640) {                               // mapholder is used to position the Google Map on the HTML page;
@@ -37,7 +40,10 @@ function showPosition(position) {
     var map = new google.maps.Map(document.getElementById("mapholder"), myOptions);
     var marker = new google.maps.Marker({position:latlon,map:map,title:"You are here!"});
     google.maps.event.addDomListener(window, 'load', getLocation);
-    
+
+    module.exports.lat = lat;
+    module.exports.lon = lon;
+    console.log(lat);
 }
 
 /*function newFunction() {
@@ -60,6 +66,7 @@ function showError(error) {
             break;
     }
 }
+
 
 function insertImage() {
     var x = document.getElementById("mapholder");
