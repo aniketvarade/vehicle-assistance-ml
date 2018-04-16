@@ -17,7 +17,7 @@ router.get('/', ensureAuthenticated, function(req, res){
 // Update
 router.get('/update', ensureAuthenticated, function(req, res){
 	
-	res.render('update', {username: req.user.name, accident: req.user.accident, coolant: req.user.currCoolantKms, oil: req.user.currOilKms, tire: req.user.currTireKms});
+	res.render('update', {username: req.user.name, accident: req.user.accident, coolant: req.user.currCoolantKms, oil: req.user.currOilKms, tire: req.user.currTireKms, model: req.user.model});
 });
 
 // About
@@ -86,24 +86,36 @@ router.post('/update', ensureAuthenticated, function(req, res){
 
 router.post('/needassistance', ensureAuthenticated, function(req,res){
 	var total = req.body.total;
-	var coolkms = req.user.currCoolantKms;
-	var oilkms = req.user.currOilKms;
-	var tirekms = req.user.currTireKms;
+	var coolKms = req.user.currCoolantKms;
+	var oilKms = req.user.currOilKms;
+	var tireKms = req.user.currTireKms;
 
 	var name = req.user.name;
-	var realcool = total - coolkms;
-	console.log(realcool);
-	//req.user.totalKms = total;
-	//console.log(req.user);
-
-	/*User.updateOne({name: name}, {$set: {
-		totalKms: total
+	if(total>coolKms && total>oilKms && total>tireKms) {
+		var realCool = total - coolKms;
+		var realOil = total - oilKms;
+		var realTire = total - tireKms;
+		console.log(realCool);
+		console.log(realOil);
+		console.log(realTire);
+		User.updateOne({name: name}, {$set: {
+		totalKms: total,
+		realCoolantKms: realCool,
+		realOilKms: realOil,
+		realTireKms: realTire
 	}}, function(err,res){
 		if(err) throw err;
 		console.log("1 document updated");
-	});*/
+	});
+	}
+	else {
+		req.flash('error_msg', 'Total Kms is less than current kms');
+		res.render('needassistance');
+	}
+	//req.user.totalKms = total;
+	//console.log(req.user);
 
-	res.render('needassistance');
+	res.redirect('/result');
 });
 
 function ensureAuthenticated(req, res, next){
