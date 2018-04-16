@@ -43,12 +43,13 @@ function showPosition(position) {
     var marker = new google.maps.Marker({position:latlon,map:map,title:"You are here!"});
     google.maps.event.addDomListener(window, 'load', getLocation);
 
-    module.exports.lat = lat;
-    module.exports.lon = lon;
-    module.exports.an = an;
+    
+    
     console.log(lat);
 }
-
+module.exports.lat = lat;
+    module.exports.lon = lon;
+module.exports.an = an;
 /*function newFunction() {
     document.getElementByName("bt1").style.visibility = "visible";
 }*/
