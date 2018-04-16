@@ -12,8 +12,9 @@ function getLocation() {                                                        
 function showPosition(position) {
      lat = position.coords.latitude;                                                     // lat is the latitude
     lon = position.coords.longitude;
-    console.log(lat);                                                    // lon is longitude
-    var latlon = new google.maps.LatLng(lat, lon)                                           // latlon gives the marker on map
+                                                        // lon is longitude
+    var latlon = new google.maps.LatLng(lat, lon)
+                                             // latlon gives the marker on map
     var mapholder = document.getElementById("mapholder");    
     if(window.screen.width > 640) {                               // mapholder is used to position the Google Map on the HTML page;
         mapholder.style.height = "450px";
