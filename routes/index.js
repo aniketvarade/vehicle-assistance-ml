@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var map = require('../public/js/map');
-var lati = map.lat;
+
 
 var User = require('../models/user');
 
