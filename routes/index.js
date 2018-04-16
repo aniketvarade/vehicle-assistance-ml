@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var map = require('../public/js/map');
-
+console.log(map.an);
 
 var User = require('../models/user');
 
@@ -31,6 +31,8 @@ router.get('/pitstop', ensureAuthenticated, function(req, res){
 
 // NeedAssistance
 router.get('/needassistance', ensureAuthenticated, function(req, res){
+	var lati = map.lat;
+console.log(lati);
 	res.render('needassistance', {username: req.user.name});
 });
 

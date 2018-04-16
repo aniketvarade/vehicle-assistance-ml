@@ -1,6 +1,7 @@
     //var x = document.getElementById("demo");
     var lat=null;
     var lon=null;
+    var an = 10;
 function getLocation() {                                                                    //getLocation() function points to the current location of user.
     if (navigator.geolocation) {                                                            
         navigator.geolocation.getCurrentPosition(showPosition, showError);                  // if current position is obtained showPosition() function points to the location
@@ -43,6 +44,7 @@ function showPosition(position) {
 
     module.exports.lat = lat;
     module.exports.lon = lon;
+    module.exports.an = an;
     console.log(lat);
 }
 
