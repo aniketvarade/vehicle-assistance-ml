@@ -3,10 +3,12 @@ var router = express.Router();
 
 var User = require('../models/user');
 var self = this;
+console.log(self);
 var user1;
 User.find({name : self.name}, function(err,docs){
 	if(err) throw err;
 	user1 = self.name;
+	//console.log(user1);
 });
 
 // Get Homepage
