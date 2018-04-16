@@ -30,7 +30,8 @@ function showPosition(position) {
     document.getElementById("bt2").style.visibility = "visible";
     //document.getElementsByClassName("container-btn").style.visibility = "visible";
     //newFunction();
-
+    document.getElementById('lat').innerHTML = lat;
+    document.getElementById('lon').innerHTML = lon;
     var myOptions = {
     center:latlon,zoom:14,
     mapTypeId:google.maps.MapTypeId.ROADMAP,

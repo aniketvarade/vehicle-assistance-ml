@@ -10,7 +10,10 @@ var User = require('../models/user');
 
 
 // Get Homepage
-router.get('/', ensureAuthenticated, function(req, res){
+router.get('/', ensureAuthenticated, function(req, res){	
+	
+	var lati = req.body.lat;
+	console.log(lati);
 	res.render('index', {username: req.user.name});
 });
 
@@ -33,7 +36,9 @@ router.get('/pitstop', ensureAuthenticated, function(req, res){
 
 // NeedAssistance
 router.get('/needassistance', ensureAuthenticated, function(req, res){
-	console.log(map.lat);
+	//console.log(map.lat);	
+	var lati = req.body.lat;
+	console.log(lati);
 	res.render('needassistance', {username: req.user.name});
 });
 
