@@ -45,10 +45,10 @@ function showPosition(position) {
 
     module.exports.lat = lat;
     module.exports.lon = lon;
-    module.exports.an = an;
+    
     console.log(lat);
 }
-
+module.exports.an = an;
 /*function newFunction() {
     document.getElementByName("bt1").style.visibility = "visible";
 }*/
