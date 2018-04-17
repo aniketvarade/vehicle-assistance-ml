@@ -26,9 +26,9 @@
                 <button class="login100-form-btn1 m-t-40" onclick=" return verify()">Submit</button> -->
         <!--/form-->
         <form name="result" method="POST" action="/result">
-        <button class="login100-form-btn m-l-100" id="pred" name="pred">{{weather}}</button>
-        <button class="login100-form-btn m-t-30 m-l-100" id="fuel">Fuel</button>
-        <button class="login100-form-btn m-t-30 m-l-100" id="battery">Battery</button>
+        <button class="login100-form-btn m-l-100" id="pred" name="pred" value="{{weather}}">{{weather}}</button>
+        <button class="login100-form-btn m-t-30 m-l-100" id="fuel" name="fuel" value="Fuel">Fuel</button>
+        <button class="login100-form-btn m-t-30 m-l-100" id="battery" name="battery" value="Battery">Battery</button>
         </form>
         <button class="login100-form-btn m-t-30 m-l-100" id="other" onclick="location.href = '/otherresult'">Other</button>
        
