@@ -93,11 +93,12 @@ router.post('/needassistance', ensureAuthenticated, function(req,res){
 	var accident=req.user.accident;
 	var latitude=19;
 	var longitude=72;
-	
+	console.log(total+"vale of total");
 
 
 	var name = req.user.name;
 	if(total>coolKms && total>oilKms && total>tireKms) {
+		console.log(total+"vale of total in if");
 		var realCool = total - coolKms;
 		var realOil = total - oilKms;
 		var realTire = total - tireKms;
@@ -136,8 +137,9 @@ router.post('/needassistance', ensureAuthenticated, function(req,res){
   		});
 	}
 	else {
+		console.log(total+"vale of total in else");
 		req.flash('error_msg', 'Total Kms is less than current kms');
-		res.render('needassistance', {username: req.user.name});
+		res.redirect('/needassistance');
 	}
 	//req.user.totalKms = total;
 	//console.log(req.user);
@@ -154,15 +156,6 @@ router.post('/result', ensureAuthenticated, function(req,res) {
 	var name = req.user.name;
 	var accident = req.user.accident
 	if(text == 'Accident') {
-<<<<<<< HEAD
-		console.log(req.user.accident);
-		req.user.accident = req.user.accident+1;
-	}
-	//if(text == 'Accident')
-	console.log(req.user.accident);
-
-		console.log(text);
-=======
 		accident = accident+1;
 		User.updateOne({name:name}, {$set: 
 			{accident: accident}
@@ -172,7 +165,6 @@ router.post('/result', ensureAuthenticated, function(req,res) {
 		});
 	}
 	//if(text == 'Accident')
->>>>>>> 68b75422d53f5acd850915a0ef05c0283a23f5f3
 
 	res.render('thankyou', {username: req.user.name});
 });
