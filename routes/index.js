@@ -149,11 +149,18 @@ PythonShell.run('predictor.py', options, function (err, results) {
 
 router.post('/result', ensureAuthenticated, function(req,res) {
 	var text = req.body.pred;
+	var name = req.user.name;
+	var accident = req.user.accident
 	if(text == 'Accident') {
-		req.user.accident = req.user.accident+1;
+		accident = accident+1;
+		User.updateOne({name:name}, {$set: 
+			{accident: accident}
+		},function(err,docs) {
+			if(err) throw err;
+			console.log("Accident = "+accident);
+		});
 	}
 	//if(text == 'Accident')
-		console.log(text);
 
 	res.render('thankyou');
 });
