@@ -113,36 +113,38 @@ router.post('/needassistance', ensureAuthenticated, function(req,res){
 		if(err) throw err;
 		console.log("1 document updated");
 	});
+		var PythonShell = require('python-shell');
+		var options = {
+    		scriptPath: 'python',
+    		args: [latitude,longitude,total,accident,realCool,realOil,realTire],
+		};
+
+		PythonShell.run('predictor.py', options, function (err, results) {
+  		if (err) throw err;
+  		console.log('results: %j', results);
+  		var x;
+  		if(results == 0) {
+			x = 'Accident';
+  		}
+  		else if(results == 1) {
+	  		x = 'Overheat';
+  		}
+  		else {
+	  		x = 'Tire';
+		}
+		  res.render('result', {weather: x, username: req.user.name});
+  		});
 	}
 	else {
 		req.flash('error_msg', 'Total Kms is less than current kms');
-		res.render('needassistance');
+		res.render('needassistance', {username: req.user.name});
 	}
 	//req.user.totalKms = total;
 	//console.log(req.user);
 	
-var PythonShell = require('python-shell');
-var options = {
-    scriptPath: 'python',
-    args: [latitude,longitude,total,accident,realCool,realOil,realTire],
-};
 
-PythonShell.run('predictor.py', options, function (err, results) {
-  if (err) throw err;
-  console.log('results: %j', results);
-  var x;
-  if(results == 0) {
-		x = 'Accident';
-  }
-  else if(results == 1) {
-	  x = 'Overheat';
-  }
-  else {
-	  x = 'Tire';
-  }
   
-   res.render('result', {weather: x});
-  });
+   
 
 	
 });
@@ -162,7 +164,7 @@ router.post('/result', ensureAuthenticated, function(req,res) {
 	}
 	//if(text == 'Accident')
 
-	res.render('thankyou');
+	res.render('thankyou', {username: req.user.name});
 });
 
 function ensureAuthenticated(req, res, next){
