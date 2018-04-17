@@ -150,9 +150,12 @@ PythonShell.run('predictor.py', options, function (err, results) {
 router.post('/result', ensureAuthenticated, function(req,res) {
 	var text = req.body.pred;
 	if(text == 'Accident') {
+		console.log(req.user.accident);
 		req.user.accident = req.user.accident+1;
 	}
 	//if(text == 'Accident')
+	console.log(req.user.accident);
+
 		console.log(text);
 
 	res.render('thankyou');
