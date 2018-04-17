@@ -13,7 +13,8 @@ function getLocation() {                                                        
 
 function showPosition(position) {
      lat = position.coords.latitude;                                                     // lat should chnage value here
-    lon = position.coords.longitude;// lon should change vale here                                                        
+     console.log(lat);
+     lon = position.coords.longitude;// lon should change vale here                                                        
     var latlon = new google.maps.LatLng(lat, lon)
                                              // latlon gives the marker on map
     var mapholder = document.getElementById("mapholder");    
@@ -46,7 +47,7 @@ function showPosition(position) {
 
     
     
-    console.log(lat);
+    
 }
 
 function showError(error) {

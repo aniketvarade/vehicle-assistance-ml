@@ -59,7 +59,10 @@ var UserSchema = mongoose.Schema({
 	},
 	currTireKms: {
 		type: Number
-	},	
+	},
+	currentResult: {
+		type: String
+	},
 	created: {
         type: Date,
         default: Date.now

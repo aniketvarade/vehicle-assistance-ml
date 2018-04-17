@@ -62,7 +62,8 @@ router.post('/register', function(req, res){
 			realTireKms: 0,
 			currCoolantKms: 0,
 			currOilKms: 0,
-			currTireKms: 0
+			currTireKms: 0,
+			currentResult: 'abc'
 		});
 
 		User.createUser(newUser, function(err, user){
