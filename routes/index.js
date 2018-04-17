@@ -130,11 +130,27 @@ var options = {
 PythonShell.run('predictor.py', options, function (err, results) {
   if (err) throw err;
   console.log('results: %j', results);
+  var x;
+  if(results == 0) {
+		x = 'Accident';
+  }
+  else if(results == 1) {
+	  x = 'Overheat';
+  }
+  else {
+	  x = 'Tire';
+  }
   
-   res.render('result', {weather: results});
+   res.render('result', {weather: x});
   });
 
 	
+});
+
+router.post('/result', ensureAuthenticated, function(req,res) {
+	
+
+	res.render('thankyou');
 });
 
 function ensureAuthenticated(req, res, next){
