@@ -1,6 +1,6 @@
     //var x = document.getElementById("demo");
-  
-    var lat=null;
+   
+    var latitude=10;
     var lon=null;
     var an = 10;
 function getLocation() {                                                                    //getLocation() function points to the current location of user.
@@ -12,8 +12,10 @@ function getLocation() {                                                        
 }
 
 function showPosition(position) {
-     lat = position.coords.latitude;                                                     // lat should chnage value here
+     lat = position.coords.latitude;
+     window.latitude=lat;                                                     // lat should chnage value here
      console.log(lat);
+     
      lon = position.coords.longitude;// lon should change vale here                                                        
     var latlon = new google.maps.LatLng(lat, lon)
                                              // latlon gives the marker on map
@@ -96,7 +98,7 @@ function hideshow() {
 }   
 
 document.getElementById("load").style.visibility="hidden";*/
-console.log("first"+lat);
-module.exports.lat = lat;
-    module.exports.lon = lon;
+
+module.exports.latitude=latitude;
+
 module.exports.an = an;

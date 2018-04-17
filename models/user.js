@@ -61,7 +61,7 @@ var UserSchema = mongoose.Schema({
 		type: Number
 	},
 	currentResult: {
-		type: String
+		type: Number
 	},
 	created: {
         type: Date,
