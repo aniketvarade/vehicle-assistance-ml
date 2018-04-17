@@ -6,11 +6,11 @@ var map = require('../public/js/map');
 var User = require('../models/user');
 
 
+
 // Get Homepage
 router.get('/', ensureAuthenticated, function(req, res){	
 	
-	var lati = req.body.lat;
-	console.log(lati);
+	
 	res.render('index', {username: req.user.name});
 });
 
@@ -64,6 +64,7 @@ router.post('/update', ensureAuthenticated, function(req, res){
 	var oil = req.body.oil;
 	var name = req.user.name;
 	
+	
 	/*req.user.model = model;
 	req.user.accident = accident;
 	req.user.currCoolantKms = coolant;
@@ -89,6 +90,9 @@ router.post('/needassistance', ensureAuthenticated, function(req,res){
 	var coolKms = req.user.currCoolantKms;
 	var oilKms = req.user.currOilKms;
 	var tireKms = req.user.currTireKms;
+	var latitude=map.getUserlat();
+	console.log(lat);
+
 
 	var name = req.user.name;
 	if(total>coolKms && total>oilKms && total>tireKms) {

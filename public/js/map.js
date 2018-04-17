@@ -49,13 +49,8 @@ function showPosition(position) {
     
     console.log(lat);
 }
-console.log("first"+lat);
-module.exports.lat = lat;
-    module.exports.lon = lon;
-module.exports.an = an;
-/*function newFunction() {
-    document.getElementByName("bt1").style.visibility = "visible";
-}*/
+getLocation();
+console.log("new"+lat);
 
 function showError(error) {
     switch(error.code) {
@@ -103,3 +98,7 @@ function hideshow() {
 }   
 
 document.getElementById("load").style.visibility="hidden";*/
+console.log("first"+lat);
+module.exports.lat = lat;
+    module.exports.lon = lon;
+module.exports.an = an;
