@@ -99,9 +99,9 @@ router.post('/needassistance', ensureAuthenticated, function(req,res){
 		var realCool = total - coolKms;
 		var realOil = total - oilKms;
 		var realTire = total - tireKms;
-		console.log(realCool);
-		console.log(realOil);
-		console.log(realTire);
+		console.log("Real coolant Kms: "+realCool);
+		console.log("Real oil Kms: "+realOil);
+		console.log("Real tire Kms: "+realTire);
 		User.updateOne({name: name}, {$set: {
 		totalKms: total,
 		realCoolantKms: realCool,
@@ -114,7 +114,7 @@ router.post('/needassistance', ensureAuthenticated, function(req,res){
 	}
 	else {
 		req.flash('error_msg', 'Total Kms is less than current kms');
-		res.render('needassistance');
+		res.redirect('/needassistance');
 	}
 	//req.user.totalKms = total;
 	//console.log(req.user);
