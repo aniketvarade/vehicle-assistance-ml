@@ -52,7 +52,7 @@ router.post('/register', function(req, res){
 			email:email,
 			username: username,
 			password: password,
-			model: "abc",
+			model: "Select Model",
 			latitude: 0.00,
 			longitude:0.00,
 			totalKms: 0,

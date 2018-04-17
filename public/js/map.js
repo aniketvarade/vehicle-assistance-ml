@@ -31,7 +31,8 @@ function showPosition(position) {
     document.getElementById("bt2").style.visibility = "visible";
     //document.getElementsByClassName("container-btn").style.visibility = "visible";
     //newFunction();
-
+    document.getElementById('lat').innerHTML = lat;
+    document.getElementById('lon').innerHTML = lon;
     var myOptions = {
     center:latlon,zoom:14,
     mapTypeId:google.maps.MapTypeId.ROADMAP,
@@ -51,7 +52,6 @@ function showPosition(position) {
 console.log("first"+lat);
 module.exports.lat = lat;
     module.exports.lon = lon;
->>>>>>> 4c5934540c52db7e3a93e3bbcab35f1d1d60b47c
 module.exports.an = an;
 /*function newFunction() {
     document.getElementByName("bt1").style.visibility = "visible";

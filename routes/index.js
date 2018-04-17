@@ -2,21 +2,22 @@ var express = require('express');
 var router = express.Router();
 
 var map = require('../public/js/map');
-console.log(map.lat);
-console.log(map.lon);
-console.log(map.an);
 
 var User = require('../models/user');
 
 
 // Get Homepage
-router.get('/', ensureAuthenticated, function(req, res){
+router.get('/', ensureAuthenticated, function(req, res){	
+	
+	var lati = req.body.lat;
+	console.log(lati);
 	res.render('index', {username: req.user.name});
 });
 
 // Update
 router.get('/update', ensureAuthenticated, function(req, res){
-	res.render('update', {username: req.user.name});
+	
+	res.render('update', {username: req.user.name, accident: req.user.accident, coolant: req.user.currCoolantKms, oil: req.user.currOilKms, tire: req.user.currTireKms, model: req.user.model});
 });
 
 // About
@@ -33,7 +34,9 @@ router.get('/pitstop', ensureAuthenticated, function(req, res){
 
 // NeedAssistance
 router.get('/needassistance', ensureAuthenticated, function(req, res){
-	console.log(map.lat);
+	//console.log(map.lat);	
+	var lati = req.body.lat;
+	console.log(lati);
 	res.render('needassistance', {username: req.user.name});
 });
 
@@ -83,20 +86,36 @@ router.post('/update', ensureAuthenticated, function(req, res){
 
 router.post('/needassistance', ensureAuthenticated, function(req,res){
 	var total = req.body.total;
-	var lati = map.lat;
-	console.log(lati);
-	var name = req.user.name;
-	req.user.totalKms = total;
-	//console.log(req.user);
+	var coolKms = req.user.currCoolantKms;
+	var oilKms = req.user.currOilKms;
+	var tireKms = req.user.currTireKms;
 
-	User.updateOne({name: name}, {$set: {
-		totalKms: total
+	var name = req.user.name;
+	if(total>coolKms && total>oilKms && total>tireKms) {
+		var realCool = total - coolKms;
+		var realOil = total - oilKms;
+		var realTire = total - tireKms;
+		console.log(realCool);
+		console.log(realOil);
+		console.log(realTire);
+		User.updateOne({name: name}, {$set: {
+		totalKms: total,
+		realCoolantKms: realCool,
+		realOilKms: realOil,
+		realTireKms: realTire
 	}}, function(err,res){
 		if(err) throw err;
 		console.log("1 document updated");
 	});
+	}
+	else {
+		req.flash('error_msg', 'Total Kms is less than current kms');
+		res.render('needassistance');
+	}
+	//req.user.totalKms = total;
+	//console.log(req.user);
 
-	res.render('needassistance');
+	res.redirect('/result');
 });
 
 function ensureAuthenticated(req, res, next){
