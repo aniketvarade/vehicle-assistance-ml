@@ -1,4 +1,5 @@
     //var x = document.getElementById("demo");
+  
     var lat=null;
     var lon=null;
     var an = 10;
@@ -43,17 +44,11 @@ function showPosition(position) {
     var marker = new google.maps.Marker({position:latlon,map:map,title:"You are here!"});
     google.maps.event.addDomListener(window, 'load', getLocation);
 
-<<<<<<< HEAD
-    module.exports.lat = lat;
-    module.exports.lon = lon;
-    
-    console.log(lat);
-}
-=======
     
     
     console.log(lat);
 }
+console.log("first"+lat);
 module.exports.lat = lat;
     module.exports.lon = lon;
 >>>>>>> 4c5934540c52db7e3a93e3bbcab35f1d1d60b47c
