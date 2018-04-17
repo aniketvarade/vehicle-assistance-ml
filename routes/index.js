@@ -90,8 +90,10 @@ router.post('/needassistance', ensureAuthenticated, function(req,res){
 	var coolKms = req.user.currCoolantKms;
 	var oilKms = req.user.currOilKms;
 	var tireKms = req.user.currTireKms;
-	var latitude=map.getUserlat();
-	console.log(lat);
+	var accident=req.user.accident;
+	var latitude=19;
+	var longitude=72;
+	
 
 
 	var name = req.user.name;
@@ -99,9 +101,9 @@ router.post('/needassistance', ensureAuthenticated, function(req,res){
 		var realCool = total - coolKms;
 		var realOil = total - oilKms;
 		var realTire = total - tireKms;
-		console.log("Real coolant Kms: "+realCool);
-		console.log("Real oil Kms: "+realOil);
-		console.log("Real tire Kms: "+realTire);
+		console.log(realCool);
+		console.log(realOil);
+		console.log(realTire);
 		User.updateOne({name: name}, {$set: {
 		totalKms: total,
 		realCoolantKms: realCool,
@@ -114,12 +116,25 @@ router.post('/needassistance', ensureAuthenticated, function(req,res){
 	}
 	else {
 		req.flash('error_msg', 'Total Kms is less than current kms');
-		res.redirect('/needassistance');
+		res.render('needassistance');
 	}
 	//req.user.totalKms = total;
 	//console.log(req.user);
+	
+var PythonShell = require('python-shell');
+var options = {
+    scriptPath: 'python',
+    args: [latitude,longitude,total,accident,realCool,realOil,realTire],
+};
 
-	res.redirect('/result');
+PythonShell.run('predictor.py', options, function (err, results) {
+  if (err) throw err;
+  console.log('results: %j', results);
+  
+   res.render('result', {weather: results});
+  });
+
+	
 });
 
 function ensureAuthenticated(req, res, next){

@@ -49,8 +49,6 @@ function showPosition(position) {
     
     console.log(lat);
 }
-getLocation();
-console.log("new"+lat);
 
 function showError(error) {
     switch(error.code) {
