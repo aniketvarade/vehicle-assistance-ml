@@ -20,6 +20,7 @@
     "express-messages": "*",
     "express-session": "*",
     "express-validator": "*",
+    "jquery": "^3.3.1",
     "mongodb": "*",
     "mongoose": "*",
     "mongoose-double": "0.0.1",

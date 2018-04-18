@@ -65,6 +65,8 @@ router.post('/update', ensureAuthenticated, function(req, res){
 	var coolant = req.body.coolant;
 	var oil = req.body.oil;
 	var name = req.user.name;
+	var lati = map.latitude;
+	console.log(lati);
 	
 	
 	/*req.user.model = model;
