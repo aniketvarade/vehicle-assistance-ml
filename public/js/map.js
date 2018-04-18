@@ -101,7 +101,6 @@ function hideshow() {
 }   
 
 document.getElementById("load").style.visibility="hidden";*/
-getLocation();
 console.log("first"+lat);
 module.exports.lat = lat;
     module.exports.lon = lon;
