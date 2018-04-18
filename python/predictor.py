@@ -26,7 +26,6 @@ X_train = dataset.iloc[:, [0,1,2,3,4,5,6,7]].values
 y_train = dataset.iloc[:, 8].values
 
 
-
 # Feature Scaling
 from sklearn.preprocessing import StandardScaler
 sc = StandardScaler()
