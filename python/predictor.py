@@ -22,13 +22,9 @@ import pandas as pd
 
 # Importing the dataset
 dataset = pd.read_csv(r"C:\Users\GLEN DEMELLO\Desktop\Node\python\Project.csv")
-X = dataset.iloc[:, [0,1,2,3,4,5,6,7]].values
-y = dataset.iloc[:, 8].values
+X_train = dataset.iloc[:, [0,1,2,3,4,5,6,7]].values
+y_train = dataset.iloc[:, 8].values
 
-
-# Splitting the dataset into the Training set and Test set(we dont need to split anymore which ill fix later)
-from sklearn.cross_validation import train_test_split
-X_train, X_test,y_train, y_test = train_test_split(X, y, test_size = 0.30)
 
 # Feature Scaling
 from sklearn.preprocessing import StandardScaler
