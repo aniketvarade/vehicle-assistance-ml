@@ -63,7 +63,8 @@ router.post('/register', function(req, res){
 			currCoolantKms: 0,
 			currOilKms: 0,
 			currTireKms: 0,
-			currentResult: 8
+			currentResult: 8,
+			userResult: 5
 		});
 
 		User.createUser(newUser, function(err, user){

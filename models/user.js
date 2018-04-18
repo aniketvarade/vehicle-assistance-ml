@@ -63,6 +63,9 @@ var UserSchema = mongoose.Schema({
 	currentResult: {
 		type: Number
 	},
+	userResult: {
+		type: Number
+	},
 	created: {
         type: Date,
         default: Date.now

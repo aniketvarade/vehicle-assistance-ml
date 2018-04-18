@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var map = require('../public/js/map');
+var PythonShell = require('python-shell');
 
 var User = require('../models/user');
 var lati = map.latitude;
@@ -115,7 +116,7 @@ router.post('/needassistance', ensureAuthenticated, function(req,res){
 		if(err) throw err;
 		console.log("1 document updated");
 	});
-		var PythonShell = require('python-shell');
+		
 		var options = {
     		scriptPath: 'python',
     		args: [latitude,longitude,total,accident,realCool,realOil,realTire],
@@ -201,6 +202,31 @@ router.post('/otherresult', ensureAuthenticated, function(req,res) {
 	//if(text == 'Accident')
 
 	res.render('otherresult', {res1:res1,res2:res2,username: req.user.name});
+});
+
+router.post('/thankyou', ensureAuthenticated, function(req,res){
+	var total = req.user.totalKms;
+	var rcoolKms = req.user.realCoolantKms;
+	var roilKms = req.user.realOilKms;
+	var rtireKms = req.user.realTireKms;
+	var accident=req.user.accident;
+	var latitude=19;
+	var longitude=72;
+	var currResult = req.user.currentResult;
+	var name = req.user.name;
+
+	var options = {
+		scriptPath: 'python',
+		args: [latitude,longitude,total,accident,rcoolKms,roilKms,rtireKms,currResult],
+	};
+
+	PythonShell.run('csvUpdater.py', options, function (err, results) {
+	  if (err) throw err;
+	  console.log('csv updater: %j', results);
+	});
+
+	res.render('thankyou', {username: req.user.name});
+	
 });
 
 
