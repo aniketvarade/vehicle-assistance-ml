@@ -30,15 +30,14 @@ router.get('/about', ensureAuthenticated, function(req, res){
 });
 
 // Pitstop
-router.get('/pitstop', ensureAuthenticated, function(req, res){
-	res.render('pitstop', {username: req.user.name});
-});
+// router.get('/pitstop', ensureAuthenticated, function(req, res){
+// 	res.render('pitstop', {username: req.user.name});
+// });
 
 // NeedAssistance
 router.get('/needassistance', ensureAuthenticated, function(req, res){
 	//console.log(map.lat);	
-	var lati = map.latitude;
-	console.log(lati);
+
 	res.render('needassistance', {username: req.user.name});
 });
 
@@ -197,10 +196,20 @@ router.post('/result', ensureAuthenticated, function(req,res) {
 			if(err) throw err;
 			console.log("User Result = 2");
 		});
+		
 	}
 	//if(text == 'Accident')
 
-	res.render('thankyou', {username: req.user.name});
+
+
+PythonShell.run('python/accuracy.py', function (err,result) {
+  if (err) throw err;
+  
+  console.log('Accuracy is at', result);
+ 
+});
+
+res.render('thankyou', {username: req.user.name});
 });
 
 //to render 2 buttons for other..current op is predicted op
