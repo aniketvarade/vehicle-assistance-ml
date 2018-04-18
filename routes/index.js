@@ -168,7 +168,7 @@ router.post('/needassistance', ensureAuthenticated, function(req,res){
 router.post('/result', ensureAuthenticated, function(req,res) {
 	var text = req.body.pred;
 	var name = req.user.name;
-	var accident = req.user.accident
+	var accident = req.user.accident;
 	if(text == 'Accident') {
 		accident = accident+1;
 		User.updateOne({name:name}, {$set: 
