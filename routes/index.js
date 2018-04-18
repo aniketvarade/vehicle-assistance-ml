@@ -4,7 +4,8 @@ var router = express.Router();
 var map = require('../public/js/map');
 
 var User = require('../models/user');
-
+var lati = map.latitude;
+	console.log(lati);
 
 
 // Get Homepage
@@ -35,7 +36,7 @@ router.get('/pitstop', ensureAuthenticated, function(req, res){
 // NeedAssistance
 router.get('/needassistance', ensureAuthenticated, function(req, res){
 	//console.log(map.lat);	
-	var lati = req.body.lat;
+	var lati = map.latitude;
 	console.log(lati);
 	res.render('needassistance', {username: req.user.name});
 });
@@ -123,16 +124,27 @@ router.post('/needassistance', ensureAuthenticated, function(req,res){
 		PythonShell.run('predictor.py', options, function (err, results) {
   		if (err) throw err;
   		console.log('results: %j', results);
-  		var x;
+		  var x,y;
+		  
   		if(results == 0) {
 			x = 'Accident';
+			y=0;
   		}
   		else if(results == 1) {
-	  		x = 'Overheat';
+			  x = 'Overheat';
+			  y=1;
   		}
   		else {
-	  		x = 'Tire';
+			  x = 'Tire';
+			  y=2;
 		}
+		
+			User.updateOne({name:name}, {$set: 
+				{currentResult: y}
+			},function(err,docs) {
+				if(err) throw err;
+				
+			});
 		  res.render('result', {weather: x, username: req.user.name});
   		});
 	}
@@ -168,6 +180,29 @@ router.post('/result', ensureAuthenticated, function(req,res) {
 
 	res.render('thankyou', {username: req.user.name});
 });
+
+//to render 2 buttons for other..current op is predicted op
+router.post('/otherresult', ensureAuthenticated, function(req,res) {
+	var name = req.user.name;
+	var currentOp = req.user.currentResult;
+	if(currentOp===0){
+		res1='Overheat';
+		res2='Tire';
+	}
+	if(currentOp===1){
+		res1='Accident';
+		res2='Tire';
+	}
+	else if(currentOp===2){
+		res1='Accident';
+		res2='Overheat';
+	}
+	
+	//if(text == 'Accident')
+
+	res.render('otherresult', {res1:res1,res2:res2,username: req.user.name});
+});
+
 
 function ensureAuthenticated(req, res, next){
 	if(req.isAuthenticated()){
