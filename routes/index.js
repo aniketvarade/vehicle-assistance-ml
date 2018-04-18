@@ -93,8 +93,8 @@ router.post('/needassistance', ensureAuthenticated, function(req,res){
 	var oilKms = req.user.currOilKms;
 	var tireKms = req.user.currTireKms;
 	var accident=req.user.accident;
-	var latitude=19;
-	var longitude=72;
+	var latitude=19.182755;
+	var longitude=72.840157;
 	console.log(total+"vale of total");
 
 
@@ -210,8 +210,8 @@ router.post('/thankyou', ensureAuthenticated, function(req,res){
 	var roilKms = req.user.realOilKms;
 	var rtireKms = req.user.realTireKms;
 	var accident=req.user.accident;
-	var latitude=19;
-	var longitude=72;
+	var latitude=19.182755;
+	var longitude=72.840157;
 	var currResult = req.user.currentResult;
 	var name = req.user.name;
 
