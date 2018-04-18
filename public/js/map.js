@@ -1,13 +1,13 @@
     //var x = document.getElementById("demo");
-    var express = require('express');
-    var router = express.Router();
+  
     
-    var map = require('../public/js/map');
     
-    var User = require('../models/user');
+    
+  
     var lat=null;
     var lon=null;
     var an = 10;
+    
 function getLocation() {                                                                    //getLocation() function points to the current location of user.
     if (navigator.geolocation) {                                                            
         navigator.geolocation.getCurrentPosition(showPosition, showError);                  // if current position is obtained showPosition() function points to the location
@@ -101,6 +101,7 @@ function hideshow() {
 }   
 
 document.getElementById("load").style.visibility="hidden";*/
+getLocation();
 console.log("first"+lat);
 module.exports.lat = lat;
     module.exports.lon = lon;
