@@ -21,7 +21,11 @@ import pandas as pd
 
 
 # Importing the dataset
+<<<<<<< HEAD
+dataset = pd.read_csv(r"python\Project.csv")
+=======
 dataset = pd.read_csv(r"python/Project.csv")
+>>>>>>> baf563cbf71dd0a1568983705508d609ff5782f9
 X_train = dataset.iloc[:, [0,1,2,3,4,5,6,7]].values
 y_train = dataset.iloc[:, 8].values
 

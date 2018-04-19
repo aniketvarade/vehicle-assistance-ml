@@ -10,7 +10,7 @@
     
 function getLocation() {                                                                    //getLocation() function points to the current location of user.
     if (navigator.geolocation) {                                                            
-        navigator.geolocation.getCurrentPosition(showPosition, showError);                  // if current position is obtained showPosition() function points to the location
+        navigator.geolocation.getCurrentPosition(showPosition, showError,{timeout:10000});                  // if current position is obtained showPosition() function points to the location
     } else {                                                                                //showError() gives error if current position cannot be obtained
         x.innerHTML = "Geolocation is not supported by this browser.";
     }
