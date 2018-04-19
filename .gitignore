@@ -1,1 +1,3 @@
 node_modules
+python/predictor.py
+python/csvUpdater.py
