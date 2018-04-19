@@ -56,16 +56,23 @@ temperature=s['main']['temp']
 
 import csv   
 fields=[currkm,accident,currcool,curroil,currtire,elevation,rain,temperature,correctPredictedvalue]
+<<<<<<< HEAD
 with open(r"F:\loginapp-slave\python\Project.csv", 'a') as f:
+=======
+with open(r"python/Project.csv", 'a', newline='') as f:
+>>>>>>> baf563cbf71dd0a1568983705508d609ff5782f9
     writer = csv.writer(f)
     writer.writerow(fields)
     
-    
+print("csv file has been updated")
     
     
 import pandas as pd
 
 
+<<<<<<< HEAD
 # Importing the dataset
 dataset = pd.read_csv(r"F:\loginapp-slave\python\Project.csv")
 print("csv updated")
+=======
+>>>>>>> baf563cbf71dd0a1568983705508d609ff5782f9

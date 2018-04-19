@@ -16,7 +16,7 @@ warnings.warn = warn
 import pandas as pd
 
 # Importing the dataset
-dataset = pd.read_csv(r'C:\Users\GLEN DEMELLO\Documents\GitHub\loginapp-slave\python\Accuracy.csv')
+dataset = pd.read_csv(r'python/Accuracy.csv')
 X = dataset.iloc[:, 0].values
 y = dataset.iloc[:, 1].values
 
@@ -26,5 +26,5 @@ y = dataset.iloc[:, 1].values
 
 from sklearn.metrics import accuracy_score
 A=accuracy_score(y,X)
-
+A=A*100
 print(A)
