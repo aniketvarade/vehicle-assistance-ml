@@ -84,6 +84,7 @@ router.post('/update', ensureAuthenticated, function(req, res){
 			if(err) throw err;
 			console.log("1 document updated");
 		});
+		req.flash('success_msg', 'Details updated successfully');
 
 	res.redirect('/update');
 });
@@ -292,7 +293,7 @@ router.post('/abc', ensureAuthenticated, function(req,res){
 	var accident=req.user.accident;
 	var latitude=19.182755;
 	var longitude=72.840157;
-	var currResult = req.user.currentResult;
+	var userResult = req.user.userResult;
 	var name = req.user.name;
 	var txt = req.body.overheat;
 	if(txt == 'Accident') {
@@ -322,7 +323,7 @@ router.post('/abc', ensureAuthenticated, function(req,res){
 
 	var options = {
 		scriptPath: 'python',
-		args: [latitude,longitude,total,accident,rcoolKms,roilKms,rtireKms,currResult],
+		args: [latitude,longitude,total,accident,rcoolKms,roilKms,rtireKms,userResult],
 	};
 
 	PythonShell.run('csvUpdater.py', options, function (err, results) {

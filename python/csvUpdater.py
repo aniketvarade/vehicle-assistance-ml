@@ -56,15 +56,13 @@ temperature=s['main']['temp']
 
 import csv   
 fields=[currkm,accident,currcool,curroil,currtire,elevation,rain,temperature,correctPredictedvalue]
-with open(r"python/Project.csv", 'a') as f:
+with open(r"python/Project.csv", 'a', newline='') as f:
     writer = csv.writer(f)
     writer.writerow(fields)
     
-    
+print("csv file has been updated")
     
     
 import pandas as pd
 
 
-# Importing the dataset
-dataset = pd.read_csv(r"C:\Users\GLEN DEMELLO\Desktop\Node\python\Project.csv")
