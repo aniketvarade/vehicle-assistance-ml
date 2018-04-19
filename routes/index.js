@@ -56,6 +56,11 @@ router.get('/thankyou', ensureAuthenticated, function(req, res){
 	res.render('thankyou', {username: req.user.name});
 });
 
+// abc
+router.get('/abc', ensureAuthenticated, function(req, res){
+	res.render('thankyou', {username: req.user.name});
+});
+
 // Update post
 router.post('/update', ensureAuthenticated, function(req, res){
 	var model = req.body.selectpicker;
