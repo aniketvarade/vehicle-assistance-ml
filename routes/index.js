@@ -331,6 +331,13 @@ router.post('/abc', ensureAuthenticated, function(req,res){
 	  console.log('csv updater: %j', results);
 	});
 
+	PythonShell.run('python/accuracy.py', function (err,result) {
+		if (err) throw err;
+		
+		console.log('Accuracy is at %s', result);
+	   
+	  });
+
 	res.render('thankyou', {username: req.user.name});
 	
 });

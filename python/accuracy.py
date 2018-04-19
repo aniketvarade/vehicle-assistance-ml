@@ -22,9 +22,10 @@ y = dataset.iloc[:, 1].values
 
 
 
-
+import numpy as np
 
 from sklearn.metrics import accuracy_score
 A=accuracy_score(y,X)
 A=A*100
+A = A.astype(np.int64)
 print(A)
