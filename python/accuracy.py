@@ -26,5 +26,5 @@ y = dataset.iloc[:, 1].values
 
 from sklearn.metrics import accuracy_score
 A=accuracy_score(y,X)
-
+A=A*100
 print(A)
