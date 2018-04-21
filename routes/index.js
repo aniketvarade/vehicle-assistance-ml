@@ -6,8 +6,6 @@ var PythonShell = require('python-shell');
 
 var User = require('../models/user');
 
-
-
 // Get Homepage
 router.get('/', ensureAuthenticated, function(req, res){	
 	
@@ -100,8 +98,8 @@ router.post('/needassistance', ensureAuthenticated, function(req,res){
 	var accident=req.user.accident;
 	var latitude=19.182755;
 	var longitude=72.840157;
-	
-	
+	var flag=0;
+
 
 
 	var name = req.user.name;
