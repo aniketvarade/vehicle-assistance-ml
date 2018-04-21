@@ -175,6 +175,8 @@ router.post('/needassistance', ensureAuthenticated, function(req,res){
 router.post('/result', ensureAuthenticated, function(req,res) {
 	var text = req.body.pred;
 	var name = req.user.name;
+	var currResult = req.user.currentResult;
+	
 	var accident = req.user.accident;
 	if(text == 'Accident') {
 		accident = accident+1;
@@ -207,12 +209,21 @@ router.post('/result', ensureAuthenticated, function(req,res) {
 	//if(text == 'Accident')
 
 
-
+	var userResult=req.user.userResult;
 PythonShell.run('python/accuracy.py', function (err,result) {
   if (err) throw err;
   
-  console.log('Accuracy is at', result);
+  console.log(' Accuracy is at percent %s ', result);
  
+});
+var options = {
+	scriptPath: 'python',
+	args: [currResult,userResult],
+};
+
+PythonShell.run('accuracyCsvupdater.py',options, function (err, result) {
+  if (err) throw err;
+  console.log('acccsv updater: %j', result);
 });
 
 res.render('thankyou', {username: req.user.name});
@@ -240,55 +251,60 @@ router.post('/otherresult', ensureAuthenticated, function(req,res) {
 	res.render('otherresult', {res1:res1,res2:res2,username: req.user.name});
 });
 
-router.post('/thankyou', ensureAuthenticated, function(req,res){
-	var total = req.user.totalKms;
-	var rcoolKms = req.user.realCoolantKms;
-	var roilKms = req.user.realOilKms;
-	var rtireKms = req.user.realTireKms;
-	var accident=req.user.accident;
-	var latitude=19.182755;
-	var longitude=72.840157;
-	var currResult = req.user.currentResult;
-	var name = req.user.name;
-	var txt = req.body.tire;
-	if(txt == 'Accident') {
-		User.updateOne({name:name}, {$set: 
-			{userResult: 0}
-		},function(err,docs) {
-			if(err) throw err;
-			console.log("User Result = 0");
-		});
-	}
-	else if(txt == 'Overheat'){
-		User.updateOne({name:name}, {$set: 
-			{userResult: 1}
-		},function(err,docs) {
-			if(err) throw err;
-			console.log("User Result = 1");
-		});
-	}
-	else{
-		User.updateOne({name:name}, {$set: 
-			{userResult: 2}
-		},function(err,docs) {
-			if(err) throw err;
-			console.log("User Result = 2");
-		});
-	}
+// router.post('/thankyou', ensureAuthenticated, function(req,res){
+// 	var total = req.user.totalKms;
+// 	var rcoolKms = req.user.realCoolantKms;
+// 	var roilKms = req.user.realOilKms;
+// 	var rtireKms = req.user.realTireKms;
+// 	var accident=req.user.accident;
+// 	var latitude=19.182755;
+// 	var longitude=72.840157;
+// 	var currResult = req.user.currentResult;
+// 	var name = req.user.name;
+// 	var txt = req.body.tire;
+// 	var userResult=req.user.userResult;
+// 	if(txt == 'Accident') {
+// 		User.updateOne({name:name}, {$set: 
+// 			{userResult: 0}
+// 		},function(err,docs) {
+// 			if(err) throw err;
+// 			console.log("User Result = 0");
+// 		});
+// 	}
+// 	else if(txt == 'Overheat'){
+// 		User.updateOne({name:name}, {$set: 
+// 			{userResult: 1}
+// 		},function(err,docs) {
+// 			if(err) throw err;
+// 			console.log("User Result = 1");
+// 		});
+// 	}
+// 	else{
+// 		User.updateOne({name:name}, {$set: 
+// 			{userResult: 2}
+// 		},function(err,docs) {
+// 			if(err) throw err;
+// 			console.log("User Result = 2");
+// 		});
+// 	}
 
-	var options = {
-		scriptPath: 'python',
-		args: [latitude,longitude,total,accident,rcoolKms,roilKms,rtireKms,currResult],
-	};
+// 	var options = {
+// 		scriptPath: 'python',
+// 		args: [latitude,longitude,total,accident,rcoolKms,roilKms,rtireKms,currResult],
+// 	};
 
-	PythonShell.run('csvUpdater.py', options, function (err, results) {
-	  if (err) throw err;
-	  console.log('csv updater: %j', results);
-	});
+// 	PythonShell.run('csvUpdater.py', options, function (err, results) {
+// 	  if (err) throw err;
+// 	  console.log('csv updater: %j', results);
+// 	});
 
-	res.render('thankyou', {username: req.user.name});
 	
-});
+
+	
+
+// 	res.render('thankyou', {username: req.user.name});
+	
+// });
 
 router.post('/abc', ensureAuthenticated, function(req,res){
 	var total = req.user.totalKms;
@@ -296,6 +312,7 @@ router.post('/abc', ensureAuthenticated, function(req,res){
 	var roilKms = req.user.realOilKms;
 	var rtireKms = req.user.realTireKms;
 	var accident=req.user.accident;
+	var currResult=req.user.currentResult;
 	var latitude=19.182755;
 	var longitude=72.840157;
 	var userResult = req.user.userResult;
@@ -335,11 +352,22 @@ router.post('/abc', ensureAuthenticated, function(req,res){
 	  if (err) throw err;
 	  console.log('csv updater: %j', results);
 	});
+	var accoptions = {
+		scriptPath: 'python',
+		args: [currResult,userResult],
+	};
+	
+	PythonShell.run('accuracyCsvupdater.py',accoptions, function (err, result) {
+	  if (err) throw err;
+	  console.log('accuracy csv updater works: %j', result);
+	});
+
+
 
 	PythonShell.run('python/accuracy.py', function (err,result) {
 		if (err) throw err;
 		
-		console.log('Accuracy is at %s', result);
+		console.log('Accuracy is at percent %s', result);
 	   
 	  });
 

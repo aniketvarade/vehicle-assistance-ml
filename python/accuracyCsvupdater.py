@@ -16,7 +16,11 @@ script,currentResult,userResult = argv
 
 import csv   
 fields=[currentResult,userResult]
-with open(r"C:\Users\GLEN DEMELLO\Desktop\Node\python\Accuracy.csv", 'a') as f:
+with open(r"python\Accuracy.csv", 'a',newline='') as f:
     writer = csv.writer(f)
     writer.writerow(fields)
+
+
+
+print("accuracy csv file updated")
     
