@@ -62,7 +62,6 @@ with open(r"python/Project.csv", 'a', newline='') as f:
     
 print("csv file has been updated")
     
-    
-import pandas as pd
+
 
 
