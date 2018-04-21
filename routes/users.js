@@ -6,6 +6,7 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
 var User = require('../models/user');
+// var userDetails = require('../models/user');
 
 // Register
 router.get('/register', function(req, res){
@@ -67,10 +68,31 @@ router.post('/register', function(req, res){
 			userResult: 5
 		});
 
+		// var newUserDetails = new userDetails({
+		// 	name: name,
+		// 	number: number,			
+		// 	username: username,		
+		// 	model: "Select Model",
+		// 	latitude: 0.00,
+		// 	longitude:0.00,
+		// 	totalKms: 0,
+		// 	accident:0,
+		// 	realCoolantKms: 0,
+		// 	realOilKms: 0,
+		// 	realTireKms: 0,
+		// 	currentResult: 8,
+		// 	userResult: 5
+		// });
+
 		User.createUser(newUser, function(err, user){
 			if(err) throw err;
 			console.log(user);
 		});
+
+		// userDetails.createUserDetails(newUserDetails, function(err, user) {
+		// 	if(err) throw err;
+		// 	console.log(user);
+		// });
 
 		req.flash('success_msg', 'You are registered and can now login');
 
