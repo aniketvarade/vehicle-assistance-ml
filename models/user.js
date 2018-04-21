@@ -72,7 +72,64 @@ var UserSchema = mongoose.Schema({
     }
 });
 
+// var userDetails = mongoose.Schema({
+// 	username: {
+// 		type: String,
+// 		index: true
+// 	},
+// 	email: {
+// 		type: String,
+// 		unique: true,
+// 		dropDups: true
+// 	},
+// 	number: {
+// 		type: Number,
+// 		unique: true,
+// 		dropDups: true
+// 	},
+// 	name: {
+// 		type: String/*,
+// 		unique:true,
+// 		dropDups:true*/
+// 	},
+// 	model: {
+// 		type: String
+// 	},
+// 	latitude: {
+// 		type: SchemaTypes.Double
+// 	},
+// 	longitude: {
+// 		type: SchemaTypes.Double
+// 	},
+// 	totalKms: {
+// 		type: Number
+// 	},
+// 	accident: {
+// 		type: Number
+// 	},
+// 	realCoolantKms: {
+// 		type: Number
+// 	},
+// 	realOilKms: {
+// 		type: Number
+// 	},
+// 	realTireKms: {
+// 		type: Number
+// 	},
+// 	currentResult: {
+// 		type: Number
+// 	},
+// 	userResult: {
+// 		type: Number
+// 	},
+// 	created: {
+//         type: Date,
+//         default: Date.now
+//     }
+// });
+
 var User = module.exports = mongoose.model('User', UserSchema);
+// var userDetails = module.exports = mongoose.model('userDetails', userDetails);
 
 UserSchema.pre('save', function (next) {
     var self = this;
@@ -110,6 +167,10 @@ module.exports.createUser = function(newUser, callback){
 	    });
 	});
 }
+
+// module.exports.createUserDetails = function(newUserDetails, callback) {
+// 	newUserDetails.save(callback);
+// }
 
 module.exports.getUserByUsername = function(username, callback){
 	var query = {username : username};
