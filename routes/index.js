@@ -366,6 +366,7 @@ router.post('/abc', ensureAuthenticated, function(req,res){
 	var name = req.user.name;
 	var txt = req.body.overheat;
 	if(txt == 'Accident') {
+		userResult = 0;
 		User.updateOne({name:name}, {$set: 
 			{userResult: 0}
 		},function(err,docs) {
@@ -374,6 +375,7 @@ router.post('/abc', ensureAuthenticated, function(req,res){
 		});
 	}
 	else if(txt == 'Overheat'){
+		userResult = 1;
 		User.updateOne({name:name}, {$set: 
 			{userResult: 1}
 		},function(err,docs) {
@@ -382,6 +384,7 @@ router.post('/abc', ensureAuthenticated, function(req,res){
 		});
 	}
 	else{
+		userResult = 2;
 		User.updateOne({name:name}, {$set: 
 			{userResult: 2}
 		},function(err,docs) {
