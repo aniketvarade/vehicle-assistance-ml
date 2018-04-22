@@ -5,9 +5,6 @@ var map = require('../public/js/map');
 var PythonShell = require('python-shell');
 
 var User = require('../models/user');
-var lati = map.latitude;
-	console.log(lati);
-
 
 // Get Homepage
 router.get('/', ensureAuthenticated, function(req, res){	
@@ -69,8 +66,7 @@ router.post('/update', ensureAuthenticated, function(req, res){
 	var coolant = req.body.coolant;
 	var oil = req.body.oil;
 	var name = req.user.name;
-	var lati = map.latitude;
-	console.log(lati);
+
 	
 	
 	/*req.user.model = model;
@@ -102,27 +98,28 @@ router.post('/needassistance', ensureAuthenticated, function(req,res){
 	var accident=req.user.accident;
 	var latitude=19.182755;
 	var longitude=72.840157;
-	console.log(total+"vale of total");
+	var flag=0;
+
 
 
 	var name = req.user.name;
 	if(total>coolKms && total>oilKms && total>tireKms) {
-		console.log(total+"vale of total in if");
 		var realCool = total - coolKms;
 		var realOil = total - oilKms;
 		var realTire = total - tireKms;
-		console.log(realCool);
-		console.log(realOil);
-		console.log(realTire);
 		User.updateOne({name: name}, {$set: {
 		totalKms: total,
 		realCoolantKms: realCool,
 		realOilKms: realOil,
-		realTireKms: realTire
+		realTireKms: realTire,
+		latitude:latitude,
+		longitude:longitude
 	}}, function(err,res){
 		if(err) throw err;
-		console.log("1 document updated");
+		console.log("Real values calculated and updated in mongoDB");
 	});
+
+
 		
 		var options = {
     		scriptPath: 'python',
@@ -158,7 +155,7 @@ router.post('/needassistance', ensureAuthenticated, function(req,res){
   		});
 	}
 	else {
-		console.log(total+"vale of total in else");
+		
 		req.flash('error_msg', 'Total Kms is less than current kms');
 		res.redirect('/needassistance');
 	}
@@ -176,44 +173,92 @@ router.post('/result', ensureAuthenticated, function(req,res) {
 	var text = req.body.pred;
 	var name = req.user.name;
 	var currResult = req.user.currentResult;
+	var userResult1=0;
+	var userResult2=1;
+	var userResult3=2;
+	var total=req.user.totalKms;
+	var accident=req.user.accident;
+	var rcoolKms=req.user.realCoolantKms;
+	var roilKms=req.user.realOilKms;
+	var rtireKms=req.user.realTireKms;
+	var latitude=req.user.latitude;
+	
+	var longitude=req.user.longitude;
 	
 	var accident = req.user.accident;
+	if(text=='Accident'|| text == 'Overheat' ||text == 'Tire' ){
 	if(text == 'Accident') {
 		accident = accident+1;
-		User.updateOne({name:name}, {$set: 
+		User.findOneAndUpdate({name:name}, {$set: 
 			{accident: accident,
-			userResult: 0}
+			userResult: userResult1}
 		},function(err,docs) {
 			if(err) throw err;
 			console.log("Accident = "+accident);
 			console.log("User Result = 0");
 		});
+		var userResult=userResult1;
+		console.log("user result is"+userResult)
+		
+		var accoptions = {
+			scriptPath: 'python',
+			args: [latitude,longitude,total,accident,rcoolKms,roilKms,rtireKms,userResult]
+		};
+		
+		PythonShell.run('csvUpdater.py', accoptions, function (err, results) {
+		  if (err) throw err;
+		  console.log('csv updater: %j', results);
+		});
 	}
 	else if(text == 'Overheat') {
-		User.updateOne({name:name}, {$set: 
-			{ userResult: 1 }
+		User.findOneAndUpdate({name:name}, {$set: 
+			{ userResult:userResult2}
 		},function(err,docs) {
 			if(err) throw err;
 			console.log("User Result = 1");
 		});
+		var userResult=userResult2;
+		console.log("user result is"+userResult)
+		
+		var accoptions = {
+			scriptPath: 'python',
+			args: [latitude,longitude,total,accident,rcoolKms,roilKms,rtireKms,userResult]
+		};
+		
+		PythonShell.run('csvUpdater.py', accoptions, function (err, results) {
+		  if (err) throw err;
+		  console.log('csv updater: %j', results);
+		});
 	}
 	else {
-		User.updateOne({name:name}, {$set: 
-			{ userResult: 2 }
+		User.findOneAndUpdate({name:name}, {$set: 
+			{ userResult: userResult3 }
 		},function(err,docs) {
 			if(err) throw err;
 			console.log("User Result = 2");
 		});
+		var userResult=userResult3;
+
+		var accoptions = {
+			scriptPath: 'python',
+			args: [latitude,longitude,total,accident,rcoolKms,roilKms,rtireKms,userResult]
+		};
+		
+		PythonShell.run('csvUpdater.py', accoptions, function (err, results) {
+		  if (err) throw err;
+		  console.log('csv updater: %j', results);
+		});
 		
 	}
 	//if(text == 'Accident')
+	
 
-
-	var userResult=req.user.userResult;
+	
+	
 PythonShell.run('python/accuracy.py', function (err,result) {
   if (err) throw err;
   
-  console.log(' Accuracy is at percent %s ', result);
+  console.log('Accuracy is at %s', result);
  
 });
 var options = {
@@ -225,6 +270,9 @@ PythonShell.run('accuracyCsvupdater.py',options, function (err, result) {
   if (err) throw err;
   console.log('acccsv updater: %j', result);
 });
+	}
+
+
 
 res.render('thankyou', {username: req.user.name});
 });
@@ -367,7 +415,7 @@ router.post('/abc', ensureAuthenticated, function(req,res){
 	PythonShell.run('python/accuracy.py', function (err,result) {
 		if (err) throw err;
 		
-		console.log('Accuracy is at percent %s', result);
+		console.log('Accuracy is at %s', result);
 	   
 	  });
 

@@ -28,4 +28,4 @@ from sklearn.metrics import accuracy_score
 A=accuracy_score(y,X)
 A=A*100
 A = A.astype(np.int64)
-print(A)
+print('%d%%' % A)

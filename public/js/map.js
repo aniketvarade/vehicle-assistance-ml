@@ -21,7 +21,7 @@ function showPosition(position) {
      console.log(lat);
      lon = position.coords.longitude;// lon should change vale here                                                        
     var latlon = new google.maps.LatLng(lat, lon)
-                                             // latlon gives the marker on map
+                                 // latlon gives the marker on map
     var mapholder = document.getElementById("mapholder");    
     if(window.screen.width > 640) {                               // mapholder is used to position the Google Map on the HTML page;
         mapholder.style.height = "450px";
@@ -101,7 +101,7 @@ function hideshow() {
 }   
 
 document.getElementById("load").style.visibility="hidden";*/
-console.log("first"+lat);
-module.exports.lat = lat;
+
+
     module.exports.lon = lon;
 module.exports.an = an;
