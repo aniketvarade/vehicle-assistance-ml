@@ -30,8 +30,9 @@
 }
 
 /* When you mouse over the navigation links, change their color */
-.abc a:hover {
+.abc a:hover.active {
     color: #f1f1f1;
+	background-color:#000000;
 }
 
 /* Position and style the close button (top right corner) */
