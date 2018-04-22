@@ -26,10 +26,10 @@ router.get('/about', ensureAuthenticated, function(req, res){
 	res.render('about', {username: req.user.name});
 });
 
-// Pitstop
-// router.get('/pitstop', ensureAuthenticated, function(req, res){
-// 	res.render('pitstop', {username: req.user.name});
-// });
+//FAQ
+router.get('/faq', ensureAuthenticated, function(req, res){
+	res.render('faq', {username: req.user.name});
+});
 
 // NeedAssistance
 router.get('/needassistance', ensureAuthenticated, function(req, res){

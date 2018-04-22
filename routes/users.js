@@ -23,6 +23,11 @@ router.get('/about', function(req, res){
 	res.render('about');
 });
 
+// FAQ
+router.get('/faq', function(req, res){
+	res.render('faq');
+});
+
 // Register User
 router.post('/register', function(req, res){
 	var name = req.body.name;
