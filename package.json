@@ -1,13 +1,13 @@
 {
-  "name": "loginapp",
+  "name": "vehicleassistance",
   "version": "1.0.0",
-  "description": "Simple authentication system",
+  "description": "Vehicle Assistance Prediction",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Brad Traversy",
+  "author": "Aniket Varade",
   "license": "ISC",
   "dependencies": {
     "alert-node": "^1.2.0",
