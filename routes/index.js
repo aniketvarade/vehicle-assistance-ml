@@ -22,7 +22,6 @@ router.get('/update', ensureAuthenticated, function(req, res){
 // About
 router.get('/about', ensureAuthenticated, function(req, res){
 	var user = req.user.email;
-	console.log(user);
 	res.render('about', {username: req.user.name});
 });
 
