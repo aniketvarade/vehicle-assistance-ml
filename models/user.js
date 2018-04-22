@@ -31,10 +31,10 @@ var UserSchema = mongoose.Schema({
 		type: String
 	},
 	latitude: {
-		type: SchemaTypes.Double
+		type: Number
 	},
 	longitude: {
-		type: SchemaTypes.Double
+		type: Number
 	},
 	totalKms: {
 		type: Number
