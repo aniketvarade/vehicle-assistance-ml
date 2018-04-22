@@ -1,16 +1,19 @@
-# Node.js Loginapp
+# Predictive Analysis for Vehicle Assistance
 
-This is a user login and registration app using Node.js, Express, Passport and Mongoose. It is part of the YouTube series [here](https://www.youtube.com/watch?v=Z1ktxiqyiLA)
 
-### Version
-1.1.0
 
-### Usage
 
 
 ### Installation
 
-Loginapp requires [Node.js](https://nodejs.org/) v4+ to run.
+This requires [Node.js](https://nodejs.org/) v4+ and [MongoDB](https://www.mongodb.com/) to run.
+To view the database in GUI you can install mongo compass from the above link.
+
+### run the project 
+
+Open mongod.exe from your MongoDB installation folder
+Next
+Open cmd or powershell in the project folder and run the following commands
 
 ```sh
 $ npm install
@@ -19,3 +22,5 @@ $ npm install
 ```sh
 $ npm start
 ```
+
+
