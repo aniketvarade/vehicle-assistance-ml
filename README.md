@@ -13,7 +13,7 @@ To view the database in GUI you can install mongo compass from the above link.
 
 Open mongod.exe from your MongoDB installation folder.
 Next
-Open cmd or powershell in the project folder and run the following commands.
+open cmd or powershell in the project folder and run the following commands.
 
 ```sh
 $ npm install
