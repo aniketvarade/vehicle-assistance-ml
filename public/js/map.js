@@ -18,7 +18,7 @@ function getLocation() {                                                        
 
 function showPosition(position) {
      lat = position.coords.latitude;                                                     // lat should chnage value here
-     console.log(lat);
+     
      lon = position.coords.longitude;// lon should change vale here                                                        
     var latlon = new google.maps.LatLng(lat, lon)
                                  // latlon gives the marker on map
@@ -36,8 +36,8 @@ function showPosition(position) {
     document.getElementById("bt2").style.visibility = "visible";
     //document.getElementsByClassName("container-btn").style.visibility = "visible";
     //newFunction();
-    document.getElementById('lat').innerHTML = lat;
-    document.getElementById('lon').innerHTML = lon;
+    //document.getElementById('lat').innerHTML = lat;
+    //document.getElementById('lon').innerHTML = lon;
     var myOptions = {
     center:latlon,zoom:14,
     mapTypeId:google.maps.MapTypeId.ROADMAP,

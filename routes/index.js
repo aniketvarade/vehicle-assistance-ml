@@ -95,9 +95,8 @@ router.post('/needassistance', ensureAuthenticated, function(req,res){
 	var oilKms = req.user.currOilKms;
 	var tireKms = req.user.currTireKms;
 	var accident=req.user.accident;
-	var latitude=19.182755;
-	var longitude=72.840157;
-	var flag=0;
+	var latitude=19.044231500000002;
+	var longitude=72.82059989999999;
 
 
 
@@ -360,8 +359,8 @@ router.post('/abc', ensureAuthenticated, function(req,res){
 	var rtireKms = req.user.realTireKms;
 	var accident=req.user.accident;
 	var currResult=req.user.currentResult;
-	var latitude=19.182755;
-	var longitude=72.840157;
+	var latitude=19.044231500000002;
+	var longitude=72.82059989999999;
 	var userResult = req.user.userResult;
 	var name = req.user.name;
 	var txt = req.body.overheat;
